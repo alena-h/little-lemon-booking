@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 const Nav = styled.nav`
-    padding-left: 15%;
-    padding-right: 15%;
+    width: 60%;
+    padding-left: 20%;
+    padding-right: 20%;
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -7,12 +7,12 @@ const Container = styled.div`
     position: relative;
 `
 const Section = styled.div`
-    width: 100%;
+    width: 60%;
     height: 100%;
     position: absolute;
     z-index: 20;
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 20%;
+    padding-right: 20%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
