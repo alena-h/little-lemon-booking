@@ -2,22 +2,17 @@ import styled from "styled-components";
 
 
 const Container = styled.div`
-    width: 60%;
-    height: 55%;
-    position: absolute;
-    bottom: 0;
+    width: 100%;
+    height: fit-content;
     display: flex;
     align-items: center;
-    flex: 2;
     justify-content: space-between;
-    box-shadow: inset 0 -15px 20px -10px #333333;
-    padding-left: 20%;
-    padding-right: 20%;
+    flex-wrap: wrap;
 `;
 
 const Left = styled.div`
     width: 40%;
-    height: 100%;
+    min-width: 400px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -59,14 +54,14 @@ const Left = styled.div`
     }
 `;
 const Right = styled.div`
-    width: 60%;
-    height: 90%;
+    width: 50%;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
     img {
-        max-height: 80%; /* Make the image responsive */
-        width: auto; /* Maintain the image's aspect ratio */
+        max-width: 600px;
+        min-width: 350px;
     }
 `;
 

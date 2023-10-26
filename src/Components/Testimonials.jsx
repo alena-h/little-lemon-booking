@@ -1,17 +1,13 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-    width: 60%;
-    height: 45%;
-    position: absolute;
-    top: 0;
+    width: 100%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: inset 0 15px 25px -10px #333333;
-    padding-left: 20%;
-    padding-right: 20%;
     object-fit: contain;
+    margin-bottom: 100px;
 `;
 
 const Header = styled.div`
@@ -32,16 +28,21 @@ const Row = styled.div`
     display: flex;
     flex: 4;
     width: 100%;
-    height: 100%;
+    min-width: 200px;
+    max-height: fit-content;
+    min-height: 300px;
     gap: 25px;
     justify-content: center;
     margin-top: 150px;
+    flex-wrap: wrap ;
+    overflow: hidden;
 `;
 
 const Card = styled.div`
-    height: 80%;
-    width: 100%;
+    max-width: 20%;
+    min-width: 200px;
     max-height: 350px;
+    min-height: 300px;
     background-color: #EDEFEE;
     border-radius: 15px;
     padding: 15px;
@@ -50,6 +51,7 @@ const Card = styled.div`
     flex-direction: column;
     gap: 20px;
     overflow: hidden;
+    object-fit: contain;
 `;
 
 const Rating = styled.div`

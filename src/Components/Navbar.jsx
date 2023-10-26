@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 const Nav = styled.nav`
     width: 60%;
@@ -141,12 +142,14 @@ const Navbar = () => {
     return (
        <Nav>
            <Logo>
-               <img src="./images/logo.png" alt="Logo" />
+                <Link to="/">
+                    <img src="./images/logo.png" alt="Logo" />
+                </Link>
            </Logo>
            <List>
-               <li><a href="/about">About Us</a></li>
+               <li><Link to="/">Home</Link></li>
                <li><a href="/menu">Our Menu</a></li>
-               <li><a href="/reserve">Reserve a Table</a></li>
+               <li><Link to="/booking">Reserve A Table</Link></li>
                <li><a href="/order">Order Online</a></li>
            </List>
            <Icons>

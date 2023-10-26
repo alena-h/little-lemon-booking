@@ -1,30 +1,32 @@
-import Testimonials from './Testimonials';
-import Story from './Story';
+import AbsoluteContainer from './AbsoluteContainer';
 import styled from 'styled-components';
 
 const Container = styled.div`
     width: 100vw;
     max-width: 100vw;
+    height: auto;
     margin: 0 auto;
     position: relative;
-    overflow: hidden;
-    background-color: #495E57;
+    background-color: transparent;
     display: flex;
-    flex: 2;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
 `;
 
 const Background = styled.img`
-        width: 100vw;
-        max-width: 100vw;
-        height: 100%;
         object-fit: cover;
+        position: absolute;
+        z-index: -1;
+        width: auto;
+        height: 100%;
+        min-width: 100vw;;
 `;
 
 const TestemAndStory = () => {
     return(
         <Container>
-            <Testimonials/>
-            <Story/>
+            <AbsoluteContainer/>
             <Background src="/images/background.png" alt="background" id='background'/>
         </Container>
     );

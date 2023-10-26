@@ -2,28 +2,30 @@ import styled from "styled-components";
 
 const Container = styled.div`
     width: 60%;
+    margin-top: 30px;
     padding-left: 20%;
     padding-right: 20%;
     color: #EDEFEE;
-    height: 320px;
+    height: 300px;
     display: flex;
     flex: 4;
     gap: 40px;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    bottom: 0;
 `;
 const Logo = styled.div`
   height: 100%;
   display: flex;
-  align-items: center;
     img {
-      height: 80%;
+      padding: 5px;
+      height: 200px;
       width: auto;
     }
 `;
 
 const Column = styled.div`
-height: 80%;
+height: 100%;
 display: flex;
 flex-direction: column;
   h2 {
