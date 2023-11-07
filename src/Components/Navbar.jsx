@@ -48,8 +48,8 @@ const Icons = styled.div`
     gap: 20px;
 `
 const Image = styled.img`
-    max-height: 30px; // Add this line to set the maximum height
-    max-width: 30px; // Add this line to set the maximum width
+    max-height: 20px; // Add this line to set the maximum height
+    max-width: 20px; // Add this line to set the maximum width
 `
 const Account = styled.div`
     .account-img {

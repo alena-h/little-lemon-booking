@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     width: 100vw;
@@ -58,6 +59,11 @@ const Section = styled.div`
         transition: all 0.2s ease;
         transform: scale(1);
 
+        a{
+            text-decoration: none;
+            color: #333333;
+        }
+
         &:hover {
             box-shadow: 0px 5px 5px #333333;
             transform: scale(1.05) perspective(1px);
@@ -92,7 +98,7 @@ const Hero = () => {
             <p>We are a family owned Mediterranean</p>
             <p>restaurant, focused on traditional recipes</p>
             <p>served with a modern twist.</p>
-            <button>Reserve a Table</button>
+            <button><Link to="/booking">Reserve a Table</Link></button>
             </>
             </Section>
             <Background src="./images/restaurant.jpg"/>

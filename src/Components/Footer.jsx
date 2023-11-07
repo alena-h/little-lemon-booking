@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     width: 60%;
@@ -12,7 +13,6 @@ const Container = styled.div`
     gap: 40px;
     justify-content: space-between;
     align-items: flex-start;
-    bottom: 0;
 `;
 const Logo = styled.div`
   height: 100%;
@@ -42,6 +42,11 @@ flex-direction: column;
     padding: 0;
   }
 
+  a{
+    text-decoration: none;
+    color: #495E57;
+  }
+
   li {
     cursor: pointer;
     margin-bottom: 5px;
@@ -63,7 +68,7 @@ const Footer = () => {
             <li>Home</li>
             <li>About</li>
             <li>Menu</li>
-            <li>Reservations</li>
+            <li><Link to="/booking">Reservations</Link></li>
             <li>Order Online</li>
             <li>Login</li>
           </ul>

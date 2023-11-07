@@ -1,20 +1,33 @@
+import BookingForm from './BookingForm';
 import styled from 'styled-components';
-import React from 'react';
 
 const Container = styled.div`
-    width: 60%;
-    padding-left: 20%;
-    padding-right: 20%;
-    height: 500px;
+    width: 100vw;
+    max-width: 100vw;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    background-color: transparent;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-`
+    overflow: hidden;
+`;
+
+const Background = styled.img`
+        object-fit: cover;
+        position: absolute;
+        z-index: -1;
+        width: auto;
+        height: 100%;
+        min-width: 100vw;
+`;
 
 const BookingPage = () => {
     return (
         <Container>
-            <h1>Booking Page Here</h1>
+            <BookingForm/>
+            <Background src="/images/background.png" alt="background" id='background'/>
         </Container>
     );
    }

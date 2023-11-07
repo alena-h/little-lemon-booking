@@ -20,7 +20,7 @@ const Background = styled.img`
         z-index: -1;
         width: auto;
         height: 100%;
-        min-width: 100vw;;
+        min-width: 100vw;
 `;
 
 const TestemAndStory = () => {
