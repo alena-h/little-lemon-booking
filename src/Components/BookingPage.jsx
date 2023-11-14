@@ -23,10 +23,12 @@ const Background = styled.img`
         min-width: 100vw;
 `;
 
-const BookingPage = () => {
+const BookingPage = (props) => {
+    const { state, dispatch, initialState } = props;
+    console.log('Initial State in BookingPage:', initialState);
     return (
         <Container>
-            <BookingForm/>
+            <BookingForm state={state} dispatch={dispatch} initialState={initialState} />
             <Background src="/images/background.png" alt="background" id='background'/>
         </Container>
     );

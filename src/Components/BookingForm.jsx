@@ -3,7 +3,6 @@ import {React, useState} from 'react';
 import DatePicker from "react-datepicker";
 import validateEmail from "../utils";
 import { format } from 'date-fns';
-
 import "react-datepicker/dist/react-datepicker.css";
 
 const Container = styled.div`
@@ -14,7 +13,6 @@ const Container = styled.div`
     align-items: center;
     padding: 10% 20%;
 `
-
 const Form = styled.form`
     display: flex;
     flex-direction: column;
@@ -22,13 +20,11 @@ const Form = styled.form`
     max-height: fit-content;
     min-width: 500px;
 `
-
 const Section = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 `
-
 const Field = styled.fieldset`
     display: flex;
     flex-direction: column;
@@ -88,11 +84,9 @@ const Field = styled.fieldset`
         padding: 10px;
     }
 `
-
 const MyContainer = styled.div`
     background-color: #EDEFEE;
 `
-
 const Submit = styled.button`
         margin-left: auto;
         //margin-right: auto;
@@ -126,21 +120,18 @@ const Submit = styled.button`
             opacity: 50%;
         }
 `
-
 const Message = styled.p`
     color: #F4CE14;
     font-size: small;
     padding: 0px;
     padding-bottom: 5px;
 `
-
 const ErrorMessage = styled.p`
     color: #f41414;
     font-size: small;
     padding: 0px;
     padding-bottom: 5px;
 `
-
 const Modal = styled.div`
   position: fixed;
   top: 50%;
@@ -163,8 +154,7 @@ const Modal = styled.div`
     height: 100px;
     margin-bottom: 20px;
   }
-`;
-
+`
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -172,8 +162,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-`;
-
+`
 const Button = styled.button`
   background: #f4ce14;
   color: #333333;
@@ -197,9 +186,15 @@ const Button = styled.button`
         color: #EDEFEE;
         background-color: #495E57;
         }
-`;
+`
 
-const CustomAlert = ({ message, onClose, startDate, firstName, guests, time,}) => {
+Date.prototype.addDays = function (days) {
+    const date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
+
+const CustomAlert = ({ message, onClose, selectedDate, firstName, guests, selectedTime,}) => {
     return (
       <>
         <Overlay />
@@ -208,11 +203,11 @@ const CustomAlert = ({ message, onClose, startDate, firstName, guests, time,}) =
             <h3>Thank you, {firstName}</h3>
             <h2>{message}</h2>
             <p>Reservation Date:</p>
-            <h4>{format(startDate, "EEEE, MMMM dd, yyyy")}</h4>
+            <h4>{format(selectedDate, "EEEE, MMMM dd, yyyy")}</h4>
             <p>Number of guests:</p>
             <h4>{guests}</h4>
             <p>Time:</p>
-            <h4>{time}</h4>
+            <h4>{selectedTime}</h4>
             <p>You will receive an email with all the details from your reservation.</p>
             <Button onClick={onClose}>OK</Button>
         </Modal>
@@ -222,17 +217,16 @@ const CustomAlert = ({ message, onClose, startDate, firstName, guests, time,}) =
 
 
 
-const BookingForm = () => {
+const BookingForm = ({ state, dispatch, initialState}) => {
     //Alert
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
     //Reservation Info
-    const [startDate, setStartDate] = useState(new Date());
+    //const [startDate, setStartDate] = useState(new Date());
     const [firstName, setFirstName] = useState("");
     const [email, setEmail] = useState("");
     const [details, setDetails] = useState("");
     const [guests, setGuests] = useState("-");
-    const [time, setTime] = useState("choose time");
     const [occasion, setOccasion] = useState("occasion");
     //Info Message
     const [messageVisible, setMessageVisible] = useState(false);
@@ -241,20 +235,21 @@ const BookingForm = () => {
     const [errorEmailVisible, setErrorEmailVisible] = useState(false);
     const [errorNameVisible, setErrorNameVisible] = useState(false);
     const [errorOccasionVisible, setErrorOccasionVisible] = useState(false);
-    const [errorTimeVisible, setErrorTimeVisible] = useState(false);
+    //const [errorTimeVisible, setErrorTimeVisible] = useState(false);
+    console.log('Initial State in BookingForm:', initialState);
 
     const handleFocus = () => {
         setMessageVisible(true);
         setErrorMessageVisible(false);
     };
 
-    const handleTimeBlur = () => {
+    /*const handleTimeBlur = () => {
         if (time === "choose time") {
             setErrorTimeVisible(true);
         } else {
             setErrorTimeVisible(false);
         }
-    }
+    };*/
 
     const handleOccasionBlur = () => {
         if (occasion === "occasion") {
@@ -262,7 +257,7 @@ const BookingForm = () => {
         } else {
             setErrorOccasionVisible(false);
         }
-    }
+    };
 
     const handleEmailBlur = () => {
         if (!validateEmail({email})) {
@@ -270,7 +265,7 @@ const BookingForm = () => {
         } else {
             setErrorEmailVisible(false);
         }
-    }
+    };
 
     const handleNameBlur = () => {
         if (firstName.length < 5) {
@@ -278,7 +273,7 @@ const BookingForm = () => {
         } else {
             setErrorNameVisible(false);
         }
-    }
+    };
 
     const handleBlur = () => {
         setMessageVisible(false);
@@ -295,42 +290,61 @@ const BookingForm = () => {
     const getIsFormValid = () => {
         return (
           firstName &&
-          startDate &&
+          //startDate &&
           validateEmail({ email }) &&
           guests >= 1 && guests <= 8 &&
-          time !== "choose time" &&
+          //time !== "choose time" &&
           occasion !== "occasion"
         );
       };
 
     const clearForm = () => {
-        setStartDate(new Date());
         setFirstName("");
         setEmail("");
         setDetails("");
         setGuests("-");
-        setTime("");
         setOccasion("");
+        dispatch({ type: 'CLEAR' });
     };
-      
+
+    const isMonday = (date) => {
+        const day = date.getDay();
+        return day !== 1;
+      };
+
+    const generateExcludedDates = (availableTimes) => {
+    const excludedDates = [];
+
+    availableTimes.forEach((timeSlot) => {
+        const allTimesDisabled = timeSlot.times.every(time => time.disabled);
+
+        if (allTimesDisabled) {
+        excludedDates.push(timeSlot.date);
+        }
+    });
+
+        return excludedDates;
+      };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = {
-            startDate,
+            selectedDate: state.selectedDate,
+            selectedTime: state.selectedTime,
             firstName,
             email,
             details,
             guests,
-            time,
             occasion,
           };
-        
+
         if (getIsFormValid()) {
-          
-          console.log('Form submitted with data:', JSON.stringify(formData, null, 2));
-          
-          setAlertMessage('Your Reservation is Confirmed!');
-          setShowAlert(true);
+
+        console.log('Form submitted with data:', JSON.stringify(formData, null, 2));
+        // When submit update list
+        dispatch({ type: 'RESERVE_TIME' });
+        setAlertMessage('Your Reservation is Confirmed!');
+        setShowAlert(true);
         } else {
             setAlertMessage('Form is not valid.');
             setShowAlert(true);
@@ -342,43 +356,42 @@ const BookingForm = () => {
         clearForm();
       };
 
+      // using a list component containing several instances of a BookingSlot component.
 
     return (
         <Container>
             <Form action="book_table" onSubmit={handleSubmit}>
                 <Section>
                     <Field>
-                        <label htmlFor="datepicker">Select Date:</label>
-                        <DatePicker
-                            showIcon
-                            className='date-input'
-                            selected={startDate}
-                            onChange={(date) => setStartDate(date)}
-                            dateFormat="dd/MM/yyyy"
-                            calendarContainer={MyContainer}
-                            closeOnScroll={true}
-                            shouldCloseOnSelect={true}
-                            minDate={new Date()}
-                            placeholder={new Date()}
-                        />
-
-                        <label htmlFor="res-time">Choose time</label>
-                        {errorTimeVisible && <ErrorMessage>Please select a valid time.</ErrorMessage>}
-                        <select
-                            id="res-time"
-                            placeholder='choose time'
-                            value={time}
-                            onChange={(e) => setTime(e.target.value)}
-                            onBlur={handleTimeBlur}
-                        >
-                            <option value="choose time">Choose Time</option>
-                            <option value="17:00">17:00</option>
-                            <option value="18:00">18:00</option>
-                            <option value="19:00">19:00</option>
-                            <option value="20:00">20:00</option>
-                            <option value="21:00">21:00</option>
-                            <option value="22:00">22:00</option>
-                        </select>
+                    <label htmlFor="datepicker">Select Date:</label>
+                    <DatePicker
+                        className='date-input'
+                        selected={state.selectedDate}
+                        onChange={(date) => dispatch({ type: 'SET_DATE', date })}
+                        dateFormat="dd/MM/yyyy"
+                        shouldCloseOnSelect={true}
+                        minDate={new Date()}
+                        maxDate={new Date().addDays(30)}
+                        placeholder={new Date()}
+                        filterDate={isMonday}
+                        excludeDates={generateExcludedDates(state.availableTimes || [])}
+                    />
+                    <label htmlFor="res-time">Choose time</label>
+                    <select
+                        id="res-time"
+                        placeholder='Choose Time'
+                        value={state.selectedTime}
+                        onChange={(e) => dispatch({ type: 'SET_TIME', time: e.target.value })}
+                    >
+                        <option key="Choose Time" disabled={false}>Choose Time</option>
+                        {state.availableTimes
+                        .find((timeSlot) => timeSlot.date.toDateString() === state.selectedDate.toDateString())
+                        .times.map((time) => (
+                            <option key={time.value} disabled={time.disabled}>
+                            {time.disabled ? `${time.value} - Reserved` : time.value}
+                            </option>
+                        ))}
+                    </select>
                         <label htmlFor="guests">Number of guests</label>
                         {messageVisible && (
                             <Message className="Message">For more than 8 guests please call to make a reservation.</Message>
@@ -455,16 +468,15 @@ const BookingForm = () => {
                         />
                     </Field>
                 </Section>
-                
                 <Submit type="submit" disabled={!getIsFormValid()}>Make your Reservation</Submit>
             </Form>
             {showAlert && (
                 <CustomAlert
                     message={alertMessage}
-                    startDate={startDate}
+                    selectedDate={state.selectedDate}
                     firstName={firstName}
                     guests={guests}
-                    time={time}
+                    selectedTime={state.selectedTime}
                     onClose={closeAlert}
                 />
             )}
