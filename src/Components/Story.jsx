@@ -8,6 +8,10 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    /* Media query for smaller screens */
+    @media only screen and (max-width: 1300px) {
+    justify-content: center;
+    }
 `;
 
 const Left = styled.div`
@@ -17,6 +21,12 @@ const Left = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: flex-start;
+
+    /* Media query for smaller screens */
+    @media only screen and (max-width: 1300px) {
+    width: 100%;
+    }
+
     h1 {
         color: #F4CE14;
         font-weight: 700;
@@ -62,6 +72,12 @@ const Right = styled.div`
     img {
         max-width: 600px;
         min-width: 350px;
+    }
+
+     /* Media query for smaller screens */
+     @media only screen and (max-width: 1300px) {
+    width: 100%;
+    justify-content: center;
     }
 `;
 

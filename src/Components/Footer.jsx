@@ -6,21 +6,38 @@ const Container = styled.div`
     margin-top: 30px;
     padding-left: 20%;
     padding-right: 20%;
-    color: #EDEFEE;
-    height: 300px;
     display: flex;
+    color: #EDEFEE;
+    min-height: 300px;
+    display: flex;
+    gap: 25px;
     flex: 4;
-    gap: 40px;
     justify-content: space-between;
     align-items: flex-start;
+    flex-wrap: wrap;
+
+    /* Media query for smaller screens */
+    @media only screen and (max-width: 1300px) {
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    }
+
+    /* Media query for even smaller screens */
+    @media only screen and (max-width: 760px) {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    }
 `;
 const Logo = styled.div`
   height: 100%;
   display: flex;
     img {
       padding: 5px;
-      height: 200px;
       width: auto;
+      max-height: 200px;
+      min-height: 70px;
     }
 `;
 

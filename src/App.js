@@ -1,10 +1,11 @@
 import './App.css';
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import MainPage from './Components/MainPage';
 import BookingPage from './Components/BookingPage';
+import InProgress from './Components/InProgress';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -61,13 +62,16 @@ const initialState = {
 function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [currentPage, setCurrentPage] = useState("home");
   console.log('Initial State in App:', initialState);
   return (
     <>
-      <Navbar/>
+      <Navbar currentPage={currentPage}/>
       <Routes>
-        <Route path="/" exact element={<MainPage />} />
-        <Route path="/booking" element={<BookingPage state={state} dispatch={dispatch} initialState={initialState}/>} />
+        <Route path="/" exact element={<MainPage setCurrentPage={setCurrentPage} />} />
+        <Route path="/booking" element={<BookingPage state={state} dispatch={dispatch} initialState={initialState} setCurrentPage={setCurrentPage}/>} />
+        <Route path="/menu" exact element={<InProgress setCurrentPage={setCurrentPage} />} />
+        <Route path="/order" exact element={<InProgress setCurrentPage={setCurrentPage} />} />
       </Routes>
       <Footer/>
     </>

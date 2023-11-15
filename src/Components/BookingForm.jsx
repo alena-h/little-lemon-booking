@@ -58,7 +58,7 @@ const Field = styled.fieldset`
     }
 
     .date-input {
-        padding-left: 30px;
+        padding-left: 10px;
         height: 40px;
         border-radius: 10px;
         border: 0;
@@ -227,7 +227,7 @@ const BookingForm = ({ state, dispatch, initialState}) => {
     const [email, setEmail] = useState("");
     const [details, setDetails] = useState("");
     const [guests, setGuests] = useState("-");
-    const [occasion, setOccasion] = useState("occasion");
+    const [occasion, setOccasion] = useState("");
     //Info Message
     const [messageVisible, setMessageVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -235,7 +235,8 @@ const BookingForm = ({ state, dispatch, initialState}) => {
     const [errorEmailVisible, setErrorEmailVisible] = useState(false);
     const [errorNameVisible, setErrorNameVisible] = useState(false);
     const [errorOccasionVisible, setErrorOccasionVisible] = useState(false);
-    //const [errorTimeVisible, setErrorTimeVisible] = useState(false);
+    const [errorTimeVisible, setErrorTimeVisible] = useState(false);
+    const [isDateSelected, setIsDateSelected] = useState(false);
     console.log('Initial State in BookingForm:', initialState);
 
     const handleFocus = () => {
@@ -243,13 +244,13 @@ const BookingForm = ({ state, dispatch, initialState}) => {
         setErrorMessageVisible(false);
     };
 
-    /*const handleTimeBlur = () => {
-        if (time === "choose time") {
+    const handleTimeBlur = () => {
+        if (state.selectedTime === "") {
             setErrorTimeVisible(true);
         } else {
             setErrorTimeVisible(false);
         }
-    };*/
+    };
 
     const handleOccasionBlur = () => {
         if (occasion === "occasion") {
@@ -287,13 +288,18 @@ const BookingForm = ({ state, dispatch, initialState}) => {
           }
     };
 
+    const handleDateChange = (date) => {
+        dispatch({ type: 'SET_DATE', date });
+        setIsDateSelected(true);
+    };
+
     const getIsFormValid = () => {
         return (
           firstName &&
-          //startDate &&
+          state.selectedDate &&
           validateEmail({ email }) &&
           guests >= 1 && guests <= 8 &&
-          //time !== "choose time" &&
+          state.selectedTime !== "choose time" &&
           occasion !== "occasion"
         );
       };
@@ -305,6 +311,7 @@ const BookingForm = ({ state, dispatch, initialState}) => {
         setGuests("-");
         setOccasion("");
         dispatch({ type: 'CLEAR' });
+        setIsDateSelected(false);
     };
 
     const isMonday = (date) => {
@@ -367,7 +374,7 @@ const BookingForm = ({ state, dispatch, initialState}) => {
                     <DatePicker
                         className='date-input'
                         selected={state.selectedDate}
-                        onChange={(date) => dispatch({ type: 'SET_DATE', date })}
+                        onChange={handleDateChange}
                         dateFormat="dd/MM/yyyy"
                         shouldCloseOnSelect={true}
                         minDate={new Date()}
@@ -377,11 +384,14 @@ const BookingForm = ({ state, dispatch, initialState}) => {
                         excludeDates={generateExcludedDates(state.availableTimes || [])}
                     />
                     <label htmlFor="res-time">Choose time</label>
+                    {errorTimeVisible && <ErrorMessage>Please select time.</ErrorMessage>}
                     <select
                         id="res-time"
                         placeholder='Choose Time'
                         value={state.selectedTime}
                         onChange={(e) => dispatch({ type: 'SET_TIME', time: e.target.value })}
+                        onBlur={handleTimeBlur}
+                        disabled={!isDateSelected}
                     >
                         <option key="Choose Time" disabled={false}>Choose Time</option>
                         {state.availableTimes

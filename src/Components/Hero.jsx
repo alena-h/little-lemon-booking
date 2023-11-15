@@ -21,6 +21,21 @@ const Section = styled.div`
     align-items: flex-start;
     justify-content: center;
     box-shadow: inset 0 -15px 50px #333333;
+
+    /* Media query for smaller screens */
+    @media only screen and (max-width: 1300px) {
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    }
+
+    /* Media query for even smaller screens */
+    @media only screen and (max-width: 760px) {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    }
+
     h1 {
         color: #F4CE14;
         font-weight: 700;

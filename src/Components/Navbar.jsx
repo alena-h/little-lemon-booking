@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Nav = styled.nav`
     width: 60%;
@@ -9,6 +9,20 @@ const Nav = styled.nav`
     align-items: center;
     justify-content: space-between;
     background: #EDEFEE;
+
+    /* Media query for smaller screens */
+    @media only screen and (max-width: 1300px) {
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    }
+
+    /* Media query for even smaller screens */
+    @media only screen and (max-width: 760px) {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    }
 `
 const Logo = styled.div`
     height: 70px;
@@ -22,26 +36,51 @@ const List = styled.ul`
     display: flex;
     gap: 40px;
     list-style: none;
-    padding: 0;
-    
-    li {
-        cursor: pointer;
-        
-        a {
-            text-decoration: none;
-            color: #495E57;
-            font-size: 18px;
-            font-weight: 600;
-            font-family: 'Karla', sans-serif;
-            position: relative; /* Add this line */
-            transition: color 0.2s, text-shadow 0.2s; /* Add this line */
+    padding: 0;`
 
-            &:hover {
-                text-shadow: 0.5px 0px 0.2px #495E57; /* Add a box-shadow to mimic bold effect */
+const StyledLi = styled.li`
+    cursor: pointer;
+    
+    a {
+        text-decoration: none;
+        color: #495E57;
+        font-size: 18px;
+        font-weight: 600;
+        font-family: 'Karla', sans-serif;
+        position: relative; /* Add this line */
+        transition: color 0.2s, text-shadow 0.2s; /* Add this line */
+
+        &:hover {
+            text-shadow: 0.5px 0px 0.2px #495E57; /* Add a box-shadow to mimic bold effect */
+        }
+        &:after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 2px;
+            background-color: #495E57;
+            transition: width 0.3s;
+        }
+
+        &:hover:after {
+            width: 100%;
+        }
+
+        ${({ active }) =>
+            active &&
+            `
+            &:after {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: #495E57;
             }
+            `
+        }
     }
-}
 `
+
 const Icons = styled.div`
     display: flex;
     align-items: center;
@@ -137,8 +176,8 @@ const Basket = styled.div`
         }
     } 
 `
-const Navbar = () => {
-    
+const Navbar = ({ currentPage }) => {
+    const location = useLocation();
     return (
        <Nav>
            <Logo>
@@ -147,10 +186,10 @@ const Navbar = () => {
                 </Link>
            </Logo>
            <List>
-               <li><Link to="/">Home</Link></li>
-               <li><a href="/menu">Our Menu</a></li>
-               <li><Link to="/booking">Reserve A Table</Link></li>
-               <li><a href="/order">Order Online</a></li>
+               <StyledLi active={location.pathname === '/'}><Link to="/">Home</Link></StyledLi>
+               <StyledLi active={location.pathname === '/menu'}><a href="/menu">Our Menu</a></StyledLi>
+               <StyledLi active={location.pathname === '/booking'}><Link to="/booking">Reserve A Table</Link></StyledLi>
+               <StyledLi active={location.pathname === '/order'}><a href="/order">Order Online</a></StyledLi>
            </List>
            <Icons>
                 <Account>

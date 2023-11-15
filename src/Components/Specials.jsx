@@ -67,6 +67,11 @@ const ItemContent = styled.div`
     animation-fill-mode: forwards;
     opacity: 0;
 
+    @media only screen and (max-width: 1300px) {
+    width: 60%;
+    left: 20%;
+    }
+
 
     @keyframes slide-up {
     0% {
@@ -101,6 +106,11 @@ const ActionButtons = styled.div`
     bottom: 15%;
     right: 20%;
     position: absolute;
+
+    @media only screen and (max-width: 1300px) {
+    justify-content: center;
+    left: 20%;
+    }
 `
 const ActionButton = styled.button`
 
@@ -309,16 +319,16 @@ const handleIntersect = (entries) => {
 // Create an Intersection Observer for the "Specials" component
 useEffect(() => {
     const slideRef = slide_ref.current; // Create a local variable
-  
+
     const options = {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
     };
-  
+
     const observer = new IntersectionObserver(handleIntersect, options);
     observer.observe(slideRef); // Use the local variable here
-  
+
     return () => {
       observer.unobserve(slideRef); // Use the local variable in the cleanup function
     };
