@@ -69,7 +69,17 @@ function App() {
       <Navbar currentPage={currentPage}/>
       <Routes>
         <Route path="/" exact element={<MainPage setCurrentPage={setCurrentPage} />} />
-        <Route path="/booking" element={<BookingPage state={state} dispatch={dispatch} initialState={initialState} setCurrentPage={setCurrentPage}/>} />
+        <Route
+          path="/booking"
+          element={
+            <BookingPage
+              state={state}
+              dispatch={dispatch}
+              initialState={initialState}
+              setCurrentPage={setCurrentPage}
+            />
+          }
+        />
         <Route path="/menu" exact element={<InProgress setCurrentPage={setCurrentPage} />} />
         <Route path="/order" exact element={<InProgress setCurrentPage={setCurrentPage} />} />
       </Routes>

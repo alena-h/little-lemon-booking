@@ -11,7 +11,11 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10% 20%;
+    padding: 5% 5% 10%;
+    h1{
+        color: #EDEFEE;
+        margin-bottom: 50px;
+    }
 `
 const Form = styled.form`
     display: flex;
@@ -83,9 +87,6 @@ const Field = styled.fieldset`
         height: 125px;
         padding: 10px;
     }
-`
-const MyContainer = styled.div`
-    background-color: #EDEFEE;
 `
 const Submit = styled.button`
         margin-left: auto;
@@ -217,7 +218,7 @@ const CustomAlert = ({ message, onClose, selectedDate, firstName, guests, select
 
 
 
-const BookingForm = ({ state, dispatch, initialState}) => {
+const BookingForm = ({ state, dispatch}) => {
     //Alert
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
@@ -237,7 +238,7 @@ const BookingForm = ({ state, dispatch, initialState}) => {
     const [errorOccasionVisible, setErrorOccasionVisible] = useState(false);
     const [errorTimeVisible, setErrorTimeVisible] = useState(false);
     const [isDateSelected, setIsDateSelected] = useState(false);
-    console.log('Initial State in BookingForm:', initialState);
+    console.log('Initial State in BookingForm:', state);
 
     const handleFocus = () => {
         setMessageVisible(true);
@@ -367,11 +368,13 @@ const BookingForm = ({ state, dispatch, initialState}) => {
 
     return (
         <Container>
+            <h1>Book Now</h1>
             <Form action="book_table" onSubmit={handleSubmit}>
                 <Section>
                     <Field>
                     <label htmlFor="datepicker">Select Date:</label>
                     <DatePicker
+                        id = "datepicker"
                         className='date-input'
                         selected={state.selectedDate}
                         onChange={handleDateChange}

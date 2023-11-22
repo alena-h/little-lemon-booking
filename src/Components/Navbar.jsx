@@ -187,9 +187,9 @@ const Navbar = ({ currentPage }) => {
            </Logo>
            <List>
                <StyledLi active={location.pathname === '/'}><Link to="/">Home</Link></StyledLi>
-               <StyledLi active={location.pathname === '/menu'}><a href="/menu">Our Menu</a></StyledLi>
+               <StyledLi active={location.pathname === '/menu'}><Link to="/menu">Our Menu</Link></StyledLi>
                <StyledLi active={location.pathname === '/booking'}><Link to="/booking">Reserve A Table</Link></StyledLi>
-               <StyledLi active={location.pathname === '/order'}><a href="/order">Order Online</a></StyledLi>
+               <StyledLi active={location.pathname === '/order'}><Link to="/order">Order Online</Link></StyledLi>
            </List>
            <Icons>
                 <Account>

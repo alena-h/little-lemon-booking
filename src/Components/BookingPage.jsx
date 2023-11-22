@@ -28,7 +28,7 @@ const BookingPage = (props) => {
     console.log('Initial State in BookingPage:', initialState);
     return (
         <Container>
-            <BookingForm state={state} dispatch={dispatch} initialState={initialState} />
+            <BookingForm state={state} dispatch={dispatch}/>
             <Background src="/images/background.png" alt="background" id='background'/>
         </Container>
     );
