@@ -1,15 +1,23 @@
-# Demo
+# [Demo](https://mylittlelemon.000webhostapp.com/)
 
-[Click Here](https://mylittlelemon.000webhostapp.com/).
+# About The Project
+
+This project marks the culmination of my immersive journey through Meta's Coursera Front-End Development course. Beginning with meticulous planning and design phases, the project unfolded as a testament to my evolving skills and dedication to the craft.
+
+The planning phase was a pivotal step, involving the creation of wireframes and a high-fidelity prototype using Figma. These tools provided a solid foundation, ensuring a clear vision of the website's structure and aesthetics. Throughout this process, I prioritized user experience and interface design, with wireframes acting as the guiding blueprint for both layout and functionality.
+
+Transitioning from wireframes to a high-fidelity prototype in Figma added layers of detail, capturing the essence of the Little Lemon brand through visual identity and interactive elements.
+
+Entering the development phase, I translated the design into code, leveraging React components to construct a responsive and engaging user interface. The homepage stands as a reflection of the planned design, offering users an intuitive and visually appealing entry point to the website.
+
+A notable achievement within the project is the successful implementation of the "Reserve a Table" feature. This functionality underscores the practical application of React components, showcasing dynamic features and seamless user interactions.
+
+As a newcomer to the frontend field, this project holds significant value as a learning experience and a valuable addition to my portfolio. While the website may not be perfect or finished, it serves as a testament to the iterative nature of web development. It highlights my commitment to continuous improvement, acknowledging that there are more features and details to explore, and emphasizing that maintaining a website is an ongoing journey of refinement and enhancement.
 
 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
 
 ### `npm start`
 
@@ -19,57 +27,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
